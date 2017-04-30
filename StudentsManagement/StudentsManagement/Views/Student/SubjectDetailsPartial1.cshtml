@@ -1,0 +1,81 @@
+﻿@model StudentsManagement.Models.RegisterSubject
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="/Content/bootstrap.css" rel="stylesheet">
+
+<html>
+<body>
+    <div>
+        <h4>Subject Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <label>Subject ID</label>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model=>model.RegSubject.SubjectID)
+            </dd>
+
+            <dt>
+                <label>Subject Name</label>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RegSubject.SubjectName)
+            </dd>
+
+            <dt>
+                <label>Subject Current Student Num</label>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RegSubject.SubjectCurrentNumber)
+            </dd>
+
+            <dt>
+                <label>Subject Allowed Student Num</label>
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.RegSubject.SubjectNumOfStudent)
+            </dd>
+        </dl>
+        <div>----Registered Students----</div>
+        <table>
+            <tr>
+                <th>
+                    <label>Student Name</label>
+                </th>
+                <th>
+                    <label>Student Age</label>
+                </th>
+                <th>
+                    <label>Student Grade</label>
+                </th>
+                <th>
+                    <label>Student Graduation Year</label>
+                </th>
+            </tr>
+            @foreach(var item in @Model.RegStudents)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model=>item.StudentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.StudentAge)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.StudentGrade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.StudentYearOfGraduation)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
+    

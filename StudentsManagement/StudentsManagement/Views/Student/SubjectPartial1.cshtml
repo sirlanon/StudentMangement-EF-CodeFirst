@@ -1,0 +1,55 @@
+﻿@*@model StudentsManagement.Models.Subject*@
+@model IEnumerable<StudentsManagement.Models.Subject>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/SubjetcPartial.js"></script>
+<link href="/Content/bootstrap.css" rel="stylesheet">
+
+<html>
+<body>
+    <h4>List of Subject</h4>
+
+    <table class="table">
+        <tr>
+            <th>
+                <label>Subject ID</label> |
+            </th>
+            <th>
+                <label>Subject Name</label> |
+            </th>
+            <th>
+                <label>Subject Current Num</label> | 
+            </th>
+            <th>
+                <label>Subject Allowed Num</label>
+            </th>
+        </tr>
+        @foreach(var item  in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m=>item.SubjectID)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.SubjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.SubjectCurrentNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.SubjectNumOfStudent)
+                </td>
+                <td>
+                    <label id="subjectPartialView" data-id="@item.SubjectID">View</label> 
+                
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="detailSubject">    </div>
+</body>
+</html>

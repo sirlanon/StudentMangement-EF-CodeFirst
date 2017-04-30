@@ -1,0 +1,90 @@
+﻿@model StudentsManagement.Models.StudentMVC
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/EditStudent.js"></script>
+    <title>Edit</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    
+        <div class="form-horizontal">
+            <h4>Edit Student Info</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.StudentID)
+       
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.StudentName)*@
+                    @*<input type="text" value="@Model.StudentName" id="name" />*@
+                    <input type="text" value="@Model.StudentID" name="StudentID" id="id" readonly class="form-control-static" size="10" />
+                    @Html.ValidationMessageFor(model => model.StudentName)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.StudentName)*@
+                    <input type="text" value="@Model.StudentName" id="name" />
+                    @Html.ValidationMessageFor(model => model.StudentName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentAge, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.StudentAge)*@
+                    <input type="text" value="@Model.StudentAge" id="age" />
+                    @Html.ValidationMessageFor(model => model.StudentAge)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentGrade, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.StudentGrade)*@
+                    <input type="text" value="@Model.StudentGrade" id="grade" />
+                    @Html.ValidationMessageFor(model => model.StudentGrade)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentYearOfGraduation, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.StudentYearOfGraduation)*@
+                    <input type="text" value="@Model.StudentYearOfGraduation" id="year" />
+                    @Html.ValidationMessageFor(model => model.StudentYearOfGraduation)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @*<input type="submit" value="Save" class="btn btn-default" />*@
+                    <input id="editStudent" type="button" value="Save Change" onclick="editStudent()" />  | @Html.ActionLink("Back to List", "Index")
+                    <br/>
+                </div>
+            </div>
+        </div>
+        }
+
+     
+
+</body>
+</html>

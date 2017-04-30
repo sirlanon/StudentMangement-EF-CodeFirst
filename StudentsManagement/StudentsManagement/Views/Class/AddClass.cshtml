@@ -1,0 +1,75 @@
+﻿@model StudentsManagement.Models.StudentClass
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/AddClass.js"></script>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddClass</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Student</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClassID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   
+                    <input type="text" id="id" />
+                    @Html.ValidationMessageFor(model => model.ClassID)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClassName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                  
+
+                    <input type="number" id="name" min="5" max="10" />
+                    @Html.ValidationMessageFor(model => model.ClassName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClassTeacherName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    
+                    <input type="text" id="teacher" />
+                    @Html.ValidationMessageFor(model => model.ClassTeacherName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClassNumberOfStudent, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   
+                    <input type="text" id="number" />
+                    @Html.ValidationMessageFor(model => model.ClassNumberOfStudent)
+                </div>
+            </div>
+          
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    
+                    <input id="saveClass" type="button" value="Add Class" onclick="saveClass()" />
+
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

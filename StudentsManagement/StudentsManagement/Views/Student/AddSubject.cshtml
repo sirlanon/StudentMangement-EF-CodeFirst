@@ -1,0 +1,60 @@
+﻿@model StudentsManagement.Models.Subject
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Subject</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubjectName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                  
+                    <input type="text" id="name" />
+                    @Html.ValidationMessageFor(model => model.SubjectName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubjectNumOfStudent, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+  
+                    <input type="number" id="number" min="15" max="50" />
+                    @Html.ValidationMessageFor(model => model.SubjectNumOfStudent)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    
+                    <input id="addSubject" type="button" value="Add Subject"  /> | @Html.ActionLink("Back to List", "Index")   
+                </div>
+            </div>
+        </div>
+    }
+
+
+</body>
+</html>
+<script src="~/Scripts/AddSubject.js"></script>

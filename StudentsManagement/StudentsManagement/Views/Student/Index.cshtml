@@ -1,0 +1,145 @@
+﻿@model IEnumerable<StudentsManagement.Models.StudentMVC>
+@*@model StudentsManagement.Models.StudentMVC*@
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/PartialView.js"></script>
+<script src="~/Scripts/RegView.js"></script>
+<script src="~/Scripts/LoadSubjectsPartial.js"></script>
+<html>
+<head>
+    <link href="/Content/bootstrap.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <script type="text/javascript">
+        function check() {
+            $.post("/Student/SubjectPartial")
+                .success(function (loadPartial) {
+                console.log(loadPartial);
+                $(".subjectView").html(loadPartial);
+                    })
+        }
+        window.onload = check;
+    </script>
+
+
+</head>
+
+<body>
+    <h2 style="margin-left:20px">Student Management System</h2>
+    <hr /> <br />
+    <p>
+        @*@Html.ActionLink("Create New", "Create")*@
+        
+
+    </p>
+    @{ Html.BeginForm("DeleteRange", "Student", FormMethod.Post, new { name = "tableForm" }); }
+    
+    <h4 style="margin-left:20px">Student List</h4>
+    <div class="row">
+        <div class="col-lg-6 ab">
+            <table class="table">
+                <tr>
+                    <th>
+                        <label for="">Tick</label> 
+                    </th>
+                    <th>
+                        <label for="">ID</label> 
+                    </th>
+                    <th>
+                        <label for="">Name</label> 
+                    </th>
+                    <th>
+                        <label for="">Age</label> 
+                    </th>
+                    <th>
+                        <label for="">Grade</label> 
+                    </th>
+                    <th>
+                        <label for="">Graduation Year</label>
+                    </th>
+
+
+
+                </tr>
+
+                @foreach (var item in Model )
+                {
+                    <tr @*class="a" data-id="@item.StudentID"*@>
+
+                        <td>
+                            <input type="checkbox" name="deleteInputs" value="@item.StudentID" />
+                        </td>
+                        <td>
+                            @*<label class="idStudent">@item.StudentID</label>*@
+                            @*@Html.DisplayFor(modelItem => item.StudentID)*@
+                            <span class="label label-primary" name="StudentID" id="stdid" style="font-size:100%">@item.StudentID</span>
+
+                            @*<input type="text" value="@item.StudentID" name="StudentID" id="idStudent" readonly class="form-control-static" size="10" />*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentAge)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentGrade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentYearOfGraduation)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { id=item.StudentID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id=item.StudentID })*@
+                            @*<a href='/Student/Edit' class="btn btn-default">Edit</a>*@
+                            <a href="@Url.Action("Edit", "Student", new { id = item.StudentID })" class="btn btn-default">Edit</a> |
+                            <a id="detailsPartialView" data-id="@item.StudentID" class="btn btn-default">Details</a> |
+                            @*<input class="b" id="detailsPartialView" data-id="@item.StudentID" type="button" value="Details" />*@
+
+                            <a href="@Url.Action("Delete", "Student", new { id = item.StudentID })" class="btn btn-default">Delete</a> | |
+
+                            <a href="@Url.Action("RegisterSubject", "Student", new { id = item.StudentID })" class="btn btn-primary">R</a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+            <br>
+            <div class="col-md-10">
+                <div class="col-lg-5"><a href='/Student/Create' class="btn btn-primary">Add New Student</a> </div>
+                <div class="col-lg-7" style="margin-left:-50px"><div class="actions">
+    <a href="javascript:(function(){document.tableForm.submit();return void(0);})()" class="btn btn-danger">
+        Delete selected student
+    </a>
+</div></div>
+               
+
+                </div>
+            </div>
+        <div class="subjectView col-lg-6 ab"></div>
+    </div>
+    <div class="resuiltStudent col-lg-5 ab pull-right">
+
+    </div>
+
+</body>
+</html>
+
+<style>
+    .ab{
+        display:inline-table;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

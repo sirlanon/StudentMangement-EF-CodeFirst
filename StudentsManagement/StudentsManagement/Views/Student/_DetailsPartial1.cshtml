@@ -1,0 +1,92 @@
+﻿@model StudentsManagement.Models.RegisterSubject
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/CancelReg.js"></script>
+
+
+<html>
+<body>
+    <div>
+        <h4>Student Details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <input type="text" value="@Model.RegStudent.StudentID" name="StudentID" id="stdid" readonly class="form-control-static" size="1" /> 
+            </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.RegStudent.StudentName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegStudent.StudentName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RegStudent.StudentAge)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegStudent.StudentAge)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RegStudent.StudentGrade)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegStudent.StudentGrade)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RegStudent.StudentYearOfGraduation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegStudent.StudentYearOfGraduation)
+            </dd>
+
+        </dl>
+    </div>
+   <div>----Registered Subjects----</div>
+    <table>
+        <tr>
+            <th>
+                <label>Subject ID</label> |
+            </th>
+            <th>
+               <label>Subject Name</label> |
+            </th>
+            <th>
+               <label>Number of Student</label> 
+            </th>
+        </tr>
+        @foreach (var item in @Model.RegSubjects) {
+        <tr>
+            <td>
+                <input type="text" value="@item.SubjectID" name="SubjectID" id="subid" readonly class="form-control-static" size="1" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectCurrentNumber)
+            </td>
+            <td>
+                <input class="cancel" id="registerCancel" type="button" value="Cancel" data-id="@item.SubjectID" onclick="registerthisCancel($(this))" />
+            </td>
+        </tr>
+        }
+    </table>
+    <script>
+    $('input[type="button"]').click(function (e) {
+    $(this).closest('tr').remove()
+    })
+    </script>
+</body>
+</html>
+
